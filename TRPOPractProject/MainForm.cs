@@ -37,6 +37,7 @@ namespace TRPOPractProject
             {
                 ParamsForm parametrs = new ParamsForm();
                 parametrs.ShowDialog();
+                tbx_MMTemperature.Text = "Мин. - " + ParametrsBox.minTemperarure.ToString() + ", Макс. - " + ParametrsBox.maxTemperarure.ToString() + ", Сред. - " + ParametrsBox.AvgTemperarure().ToString();
             }
             else
             {
@@ -66,12 +67,12 @@ namespace TRPOPractProject
         public static int countDays = 1;
         public static int minTemperarure;
         public static int maxTemperarure;
-        public static int[] temperatures;
+        public static List<int> temperatures;
 
         public static int AvgTemperarure()
         {
             int summ = 0;
-            for (int i = 0; i < temperatures.Length; i++)
+            for (int i = 0; i < temperatures.Count; i++)
             {
                 summ += temperatures[i];
             }

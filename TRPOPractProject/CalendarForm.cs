@@ -15,6 +15,11 @@ namespace TRPOPractProject
         public CalendarForm()
         {
             InitializeComponent();
+
+            ParametrsBox.monthName = GetMonthName(DateTime.Now.Month);
+            ParametrsBox.countDays = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            lbl_SelectedMonth.Text = "Выбранный месяц: " + ParametrsBox.monthName;
+            lbl_CountDays.Text = "Количество дней: " + ParametrsBox.countDays.ToString();
         }
         
         private void Btn_Cancel_Click(object sender, EventArgs e)
