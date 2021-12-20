@@ -51,7 +51,8 @@ namespace TRPOPractProject
         {
             if (ParametrsBox.monthName != "" && ParametrsBox.countDays != 1)
             {
-
+                Diagram graph = new Diagram(ParametrsBox.countDays, 0);
+                GraphBox.Image = graph.DrawDiagram();
             }
             else
             {
