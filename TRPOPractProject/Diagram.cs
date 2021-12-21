@@ -34,6 +34,7 @@ namespace TRPOPractProject
             frameGraph.DrawLine(graphPen, point1, point2);
             frameGraph.DrawLine(graphPen, point3, point4);
             DrawPointsX(countPointsX);
+            DrawPointsY();
             return frameImage;
         }
 
@@ -45,6 +46,18 @@ namespace TRPOPractProject
                 x += 20;
                 PointF p1 = new PointF(x, 295f);
                 PointF p2 = new PointF(x, 305f);
+                frameGraph.DrawLine(graphPen, p1, p2);
+            }
+        }
+
+        public void DrawPointsY()
+        {
+            float y = 20f;
+            for(int i = 0; i < 50; i++)
+            {
+                y += 10;
+                PointF p1 = new PointF(-5f, y);
+                PointF p2 = new PointF(5f, y);
                 frameGraph.DrawLine(graphPen, p1, p2);
             }
         }
