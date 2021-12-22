@@ -10,7 +10,7 @@ namespace TRPOPractProject
 {    
     class Diagram
     {
-        Bitmap frameImage = new Bitmap(2000, 1600);
+        Bitmap frameImage = new Bitmap(1000, 800);
 
         Pen graphPen = new Pen(Color.Black);
         Pen diagramPointsPen = new Pen(Color.OrangeRed);
