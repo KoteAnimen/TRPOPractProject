@@ -21,9 +21,12 @@ namespace TRPOPractProject
 
         private void Btn_Cancel_Click(object sender, EventArgs e)
         {
-            ParametrsBox.temperatures.Clear();
-            ParametrsBox.minTemperarure = 0;
-            ParametrsBox.maxTemperarure = 0;
+            if(ParametrsBox.temperatures != null)
+            {
+                ParametrsBox.temperatures.Clear();
+                ParametrsBox.minTemperarure = 0;
+                ParametrsBox.maxTemperarure = 0;
+            }            
             this.Close();
         }
 

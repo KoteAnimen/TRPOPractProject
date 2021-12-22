@@ -86,10 +86,13 @@ namespace TRPOPractProject
         public static int AvgTemperarure()
         {
             int summ = 0;
-            for (int i = 0; i < temperatures.Count; i++)
+            if(temperatures != null)
             {
-                summ += temperatures[i];
-            }
+                for (int i = 0; i < temperatures.Count; i++)
+                {
+                    summ += temperatures[i];
+                }
+            }            
             return summ / countDays;
         }
     }
