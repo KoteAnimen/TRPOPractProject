@@ -11,13 +11,22 @@ namespace TRPOPractProject
     class Diagram
     {
         Bitmap frameImage = new Bitmap(1000, 800);
+
         Pen graphPen = new Pen(Color.Black);
-        Graphics frameGraph;        
+        Pen diagramPointsPen = new Pen(Color.OrangeRed);
+        Pen diagramPen = new Pen(Color.Red);
+
+        Font font = new Font("Times New Roman", 15, FontStyle.Regular);        
+
+        Graphics frameGraph; 
+        
         PointF point1 = new PointF(0.0F, 300.0F);
-        PointF point2 = new PointF(1000.0F, 300.0F);
+        PointF point2 = new PointF(650.0F, 300.0F);
 
         PointF point3 = new PointF(0.0F, 520.0F);
         PointF point4 = new PointF(0.0F, 30.0F);
+
+        List<PointF> pointsGraph = new List<PointF>();
 
         int countPointsX = 0;
         int countPointsY = 0;
@@ -34,31 +43,67 @@ namespace TRPOPractProject
             frameGraph.DrawLine(graphPen, point1, point2);
             frameGraph.DrawLine(graphPen, point3, point4);
             DrawPointsX(countPointsX);
-            DrawPointsY();
+            DrawPointsY(countPointsY);
+            DrawGraphPoints(ParametrsBox.temperatures);
+            DrawGraph();
             return frameImage;
         }
 
-        public void DrawPointsX(int countPoints)
+        void DrawPointsX(int countPoints)
         {
             float x = 0f;
+            PointF lastPoint = new PointF();
             for (int i = 0; i < countPoints; i++)
             {
                 x += 20;
                 PointF p1 = new PointF(x, 295f);
                 PointF p2 = new PointF(x, 305f);
                 frameGraph.DrawLine(graphPen, p1, p2);
+                lastPoint = p2;
             }
+            frameGraph.DrawString("Дни месяца", font, Brushes.Black, lastPoint);
         }
 
-        public void DrawPointsY()
+        void DrawPointsY(int countY)
         {
             float y = 20f;
-            for(int i = 0; i < 50; i++)
+            PointF firstPoint = new PointF(8f, y);
+            frameGraph.DrawString("t", font, Brushes.Black, firstPoint);
+            for (int i = 0; i < countY; i++)
             {
                 y += 10;
                 PointF p1 = new PointF(-5f, y);
                 PointF p2 = new PointF(5f, y);
                 frameGraph.DrawLine(graphPen, p1, p2);
+            }
+        }
+
+        void DrawGraphPoints(List<int> temperatures)
+        {
+            float x = 0;
+            if(temperatures == null)
+            {
+                throw new Exception("Отсутствуют значения температур!");
+            }
+            else
+            {
+                foreach (int temperature in temperatures)
+                {
+                    float y = 300f;
+                    x += 20f;
+                    PointF point = new PointF(x, y - (10 * temperature));
+                    pointsGraph.Add(point);
+                    frameGraph.DrawEllipse(diagramPointsPen, x, y - (10 * temperature), 2f, 2f);
+                }
+            }
+            
+        }
+
+        void DrawGraph()
+        {
+            for(int i = 1; i < pointsGraph.Count; i++)
+            {
+                frameGraph.DrawLine(diagramPen, pointsGraph[i - 1], pointsGraph[i]);
             }
         }
     }

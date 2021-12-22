@@ -72,8 +72,18 @@ namespace TRPOPractProject
             // nud_Max
             // 
             this.nud_Max.Location = new System.Drawing.Point(10, 129);
+            this.nud_Max.Maximum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.nud_Max.Minimum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            -2147483648});
             this.nud_Max.Name = "nud_Max";
-            this.nud_Max.Size = new System.Drawing.Size(180, 29);
+            this.nud_Max.Size = new System.Drawing.Size(180, 34);
             this.nud_Max.TabIndex = 3;
             // 
             // label2
@@ -81,15 +91,25 @@ namespace TRPOPractProject
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 101);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(182, 24);
+            this.label2.Size = new System.Drawing.Size(232, 29);
             this.label2.TabIndex = 2;
             this.label2.Text = "Макс. температура";
             // 
             // nud_Min
             // 
             this.nud_Min.Location = new System.Drawing.Point(10, 69);
+            this.nud_Min.Maximum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.nud_Min.Minimum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            -2147483648});
             this.nud_Min.Name = "nud_Min";
-            this.nud_Min.Size = new System.Drawing.Size(180, 29);
+            this.nud_Min.Size = new System.Drawing.Size(180, 34);
             this.nud_Min.TabIndex = 1;
             // 
             // label1
@@ -97,7 +117,7 @@ namespace TRPOPractProject
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 24);
+            this.label1.Size = new System.Drawing.Size(225, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Мин. температура";
             // 
@@ -114,10 +134,10 @@ namespace TRPOPractProject
             // listParams
             // 
             this.listParams.FormattingEnabled = true;
-            this.listParams.ItemHeight = 24;
+            this.listParams.ItemHeight = 29;
             this.listParams.Location = new System.Drawing.Point(7, 42);
             this.listParams.Name = "listParams";
-            this.listParams.Size = new System.Drawing.Size(287, 172);
+            this.listParams.Size = new System.Drawing.Size(287, 149);
             this.listParams.TabIndex = 0;
             // 
             // Btn_SetParams
@@ -142,9 +162,9 @@ namespace TRPOPractProject
             // 
             // ParamsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 299);
+            this.ClientSize = new System.Drawing.Size(525, 295);
             this.ControlBox = false;
             this.Controls.Add(this.Btn_Cancel);
             this.Controls.Add(this.Btn_SetParams);

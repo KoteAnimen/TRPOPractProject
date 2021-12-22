@@ -51,14 +51,27 @@ namespace TRPOPractProject
         {
             if (ParametrsBox.monthName != "" && ParametrsBox.countDays != 1)
             {
-                Diagram graph = new Diagram(ParametrsBox.countDays, 0);
-                GraphBox.Image = graph.DrawDiagram();
+                Diagram graph = new Diagram(ParametrsBox.countDays, 50);
+                try
+                {
+                    GraphBox.Image = graph.DrawDiagram();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка");
+                }
+                
             }
             else
             {
                 MessageBox.Show("Невозможно построить график, так как параметры не были установлены!", "Ошибка");
                 return;
             }
+        }
+
+        private void Btn_AboutUs_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("ИСП-41, Филяк. \nЗадание: Построение графика для получаемых извне данных: график должен строиться постоянно, должны выводиться текущие показания, средний и прогноз (источник текущих показаний заменить ГСЧ, строящим в заданном интервале изменений за последние полгода ", "О программе");
         }
     }
 

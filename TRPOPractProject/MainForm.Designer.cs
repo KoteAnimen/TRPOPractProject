@@ -94,8 +94,9 @@ namespace TRPOPractProject
             // Btn_AboutUs
             // 
             this.Btn_AboutUs.Name = "Btn_AboutUs";
-            this.Btn_AboutUs.Size = new System.Drawing.Size(187, 26);
+            this.Btn_AboutUs.Size = new System.Drawing.Size(224, 26);
             this.Btn_AboutUs.Text = "О программе";
+            this.Btn_AboutUs.Click += new System.EventHandler(this.Btn_AboutUs_Click);
             // 
             // toolStrip1
             // 
