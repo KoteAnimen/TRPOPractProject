@@ -10,10 +10,10 @@ namespace TRPOPractProject
 {    
     class Diagram
     {
-        Bitmap frameImage = new Bitmap(1000, 800);
+        Bitmap frameImage = new Bitmap(3000, 2400);
 
         Pen graphPen = new Pen(Color.Black);
-        Pen diagramPointsPen = new Pen(Color.OrangeRed);
+        Pen diagramPointsPen = new Pen(Color.Blue);
         Pen diagramPen = new Pen(Color.Red);
 
         Font font = new Font("Times New Roman", 15, FontStyle.Regular);        
@@ -93,7 +93,7 @@ namespace TRPOPractProject
                     x += 20f;
                     PointF point = new PointF(x, y - (10 * temperature));
                     pointsGraph.Add(point);
-                    frameGraph.DrawEllipse(diagramPointsPen, x, y - (10 * temperature), 2f, 2f);
+                    frameGraph.DrawEllipse(diagramPointsPen, x, y - (10 * temperature), 1f, 1f);
                 }
             }
             
