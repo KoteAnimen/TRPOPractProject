@@ -23,8 +23,8 @@ namespace TRPOPractProject
         PointF point1 = new PointF(0.0F, 300.0F);
         PointF point2 = new PointF(650.0F, 300.0F);
 
-        PointF point3 = new PointF(0.0F, 520.0F);
-        PointF point4 = new PointF(0.0F, 30.0F);
+        PointF point3 = new PointF(0.0F, 550.0F);
+        PointF point4 = new PointF(0.0F, 50.0F);
 
         List<PointF> pointsGraph = new List<PointF>();
 
@@ -66,7 +66,7 @@ namespace TRPOPractProject
 
         void DrawPointsY(int countY)
         {
-            float y = 20f;
+            float y = 40f;
             PointF firstPoint = new PointF(8f, y);
             frameGraph.DrawString("t", font, Brushes.Black, firstPoint);
             for (int i = 0; i < countY; i++)
