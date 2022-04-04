@@ -64,7 +64,7 @@ namespace TRPOPractProject
             this.справкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(883, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(883, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -73,13 +73,13 @@ namespace TRPOPractProject
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Btn_Exit});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // Btn_Exit
             // 
             this.Btn_Exit.Name = "Btn_Exit";
-            this.Btn_Exit.Size = new System.Drawing.Size(136, 26);
+            this.Btn_Exit.Size = new System.Drawing.Size(109, 22);
             this.Btn_Exit.Text = "Выход";
             this.Btn_Exit.Click += new System.EventHandler(this.Btn_Exit_Click);
             // 
@@ -88,13 +88,13 @@ namespace TRPOPractProject
             this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Btn_AboutUs});
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
             // Btn_AboutUs
             // 
             this.Btn_AboutUs.Name = "Btn_AboutUs";
-            this.Btn_AboutUs.Size = new System.Drawing.Size(224, 26);
+            this.Btn_AboutUs.Size = new System.Drawing.Size(149, 22);
             this.Btn_AboutUs.Text = "О программе";
             this.Btn_AboutUs.Click += new System.EventHandler(this.Btn_AboutUs_Click);
             // 
@@ -106,7 +106,7 @@ namespace TRPOPractProject
             this.Tbtn_SetParams,
             this.Tbtn_BuildGraph});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(883, 27);
             this.toolStrip1.TabIndex = 1;
@@ -118,7 +118,7 @@ namespace TRPOPractProject
             this.Tbtn_SelectMonth.Image = global::TRPOPractProject.Properties.Resources.calendar;
             this.Tbtn_SelectMonth.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Tbtn_SelectMonth.Name = "Tbtn_SelectMonth";
-            this.Tbtn_SelectMonth.Size = new System.Drawing.Size(29, 24);
+            this.Tbtn_SelectMonth.Size = new System.Drawing.Size(24, 24);
             this.Tbtn_SelectMonth.Text = "toolStripButton1";
             this.Tbtn_SelectMonth.ToolTipText = "Выбрать месяц";
             this.Tbtn_SelectMonth.Click += new System.EventHandler(this.Tbtn_SelectMonth_Click);
@@ -129,7 +129,7 @@ namespace TRPOPractProject
             this.Tbtn_SetParams.Image = global::TRPOPractProject.Properties.Resources._110229_keyboard_512x512;
             this.Tbtn_SetParams.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Tbtn_SetParams.Name = "Tbtn_SetParams";
-            this.Tbtn_SetParams.Size = new System.Drawing.Size(29, 24);
+            this.Tbtn_SetParams.Size = new System.Drawing.Size(24, 24);
             this.Tbtn_SetParams.Text = "toolStripButton2";
             this.Tbtn_SetParams.ToolTipText = "Ввод данных";
             this.Tbtn_SetParams.Click += new System.EventHandler(this.Tbtn_SetParams_Click);
@@ -140,7 +140,7 @@ namespace TRPOPractProject
             this.Tbtn_BuildGraph.Image = global::TRPOPractProject.Properties.Resources._294_2949560_svg_icon_free_download_clipart;
             this.Tbtn_BuildGraph.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Tbtn_BuildGraph.Name = "Tbtn_BuildGraph";
-            this.Tbtn_BuildGraph.Size = new System.Drawing.Size(29, 24);
+            this.Tbtn_BuildGraph.Size = new System.Drawing.Size(24, 24);
             this.Tbtn_BuildGraph.Text = "toolStripButton3";
             this.Tbtn_BuildGraph.ToolTipText = "Построить график";
             this.Tbtn_BuildGraph.Click += new System.EventHandler(this.Tbtn_BuildGraph_Click);
@@ -164,10 +164,11 @@ namespace TRPOPractProject
             this.GraphBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GraphBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.GraphBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.GraphBox.Location = new System.Drawing.Point(7, 34);
             this.GraphBox.Name = "GraphBox";
             this.GraphBox.Size = new System.Drawing.Size(845, 445);
+            this.GraphBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.GraphBox.TabIndex = 0;
             this.GraphBox.TabStop = false;
             // 
@@ -196,7 +197,7 @@ namespace TRPOPractProject
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(591, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 25);
+            this.label3.Size = new System.Drawing.Size(61, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Месяц:";
             // 
@@ -208,7 +209,7 @@ namespace TRPOPractProject
             this.tbx_MonthName.Location = new System.Drawing.Point(596, 69);
             this.tbx_MonthName.Name = "tbx_MonthName";
             this.tbx_MonthName.ReadOnly = true;
-            this.tbx_MonthName.Size = new System.Drawing.Size(256, 34);
+            this.tbx_MonthName.Size = new System.Drawing.Size(256, 29);
             this.tbx_MonthName.TabIndex = 4;
             // 
             // label2
@@ -217,7 +218,7 @@ namespace TRPOPractProject
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(205, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(332, 25);
+            this.label2.Size = new System.Drawing.Size(263, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Мин.,  макс. и сред. температуры:";
             // 
@@ -228,7 +229,7 @@ namespace TRPOPractProject
             this.tbx_MMTemperature.Location = new System.Drawing.Point(210, 69);
             this.tbx_MMTemperature.Name = "tbx_MMTemperature";
             this.tbx_MMTemperature.ReadOnly = true;
-            this.tbx_MMTemperature.Size = new System.Drawing.Size(335, 34);
+            this.tbx_MMTemperature.Size = new System.Drawing.Size(335, 29);
             this.tbx_MMTemperature.TabIndex = 2;
             // 
             // label1
@@ -238,7 +239,7 @@ namespace TRPOPractProject
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 25);
+            this.label1.Size = new System.Drawing.Size(124, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Дней в месяце:";
             // 
@@ -250,12 +251,12 @@ namespace TRPOPractProject
             this.tbx_DaysInMonth.Location = new System.Drawing.Point(7, 69);
             this.tbx_DaysInMonth.Name = "tbx_DaysInMonth";
             this.tbx_DaysInMonth.ReadOnly = true;
-            this.tbx_DaysInMonth.Size = new System.Drawing.Size(153, 34);
+            this.tbx_DaysInMonth.Size = new System.Drawing.Size(153, 29);
             this.tbx_DaysInMonth.TabIndex = 1;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 671);
             this.Controls.Add(this.groupBox2);

@@ -10,7 +10,10 @@ namespace TRPOPractProject
 {    
     class Diagram
     {
-        Bitmap frameImage = new Bitmap(3000, 2400);
+        static int widthImage = 1400;
+        static int heightImage = 500; 
+
+        Bitmap frameImage = new Bitmap(widthImage, heightImage);
 
         Pen graphPen = new Pen(Color.Black);
         Pen diagramPointsPen = new Pen(Color.Blue);
@@ -18,13 +21,13 @@ namespace TRPOPractProject
 
         Font font = new Font("Times New Roman", 15, FontStyle.Regular);        
 
-        Graphics frameGraph; 
-        
-        PointF point1 = new PointF(0.0F, 300.0F);
-        PointF point2 = new PointF(650.0F, 300.0F);
+        Graphics frameGraph;
 
-        PointF point3 = new PointF(0.0F, 550.0F);
-        PointF point4 = new PointF(0.0F, 50.0F);
+        PointF firstPointX = new PointF(0f, (float)heightImage / 2);
+        PointF firstPointY = new PointF(0.0F, 0.0F);
+
+        float stepX = 20f;
+        float stepY = 10f;        
 
         List<PointF> pointsGraph = new List<PointF>();
 
@@ -39,9 +42,7 @@ namespace TRPOPractProject
         }
 
         public Bitmap DrawDiagram()
-        {
-            frameGraph.DrawLine(graphPen, point1, point2);
-            frameGraph.DrawLine(graphPen, point3, point4);
+        {            
             DrawPointsX(countPointsX);
             DrawPointsY(countPointsY);
             DrawGraphPoints(ParametrsBox.temperatures);
@@ -55,27 +56,24 @@ namespace TRPOPractProject
             PointF lastPoint = new PointF();
             for (int i = 0; i < countPoints; i++)
             {
-                x += 20;
-                PointF p1 = new PointF(x, 295f);
-                PointF p2 = new PointF(x, 305f);
-                frameGraph.DrawLine(graphPen, p1, p2);
-                lastPoint = p2;
+                x += stepX;
+                lastPoint = new PointF(x, (float)heightImage / 2f + 4f);
+                frameGraph.DrawLine(graphPen, new PointF(x, (float)heightImage / 2f - 4f), lastPoint);                
             }
             frameGraph.DrawString("Дни месяца", font, Brushes.Black, lastPoint);
+            frameGraph.DrawLine(graphPen, firstPointX, new PointF(x, (float)heightImage / 2f));
         }
 
         void DrawPointsY(int countY)
         {
-            float y = 40f;
-            PointF firstPoint = new PointF(8f, y);
-            frameGraph.DrawString("t", font, Brushes.Black, firstPoint);
+            float y = 0f;            
+            frameGraph.DrawString("t", font, Brushes.Black, new PointF(8f, y));
             for (int i = 0; i < countY; i++)
             {
-                y += 10;
-                PointF p1 = new PointF(-5f, y);
-                PointF p2 = new PointF(5f, y);
-                frameGraph.DrawLine(graphPen, p1, p2);
+                y += stepY;                
+                frameGraph.DrawLine(graphPen, new PointF(-5f, y), new PointF(5f, y));
             }
+            frameGraph.DrawLine(graphPen, firstPointY, new PointF(0f, y));
         }
 
         void DrawGraphPoints(List<int> temperatures)
@@ -88,15 +86,12 @@ namespace TRPOPractProject
             else
             {
                 foreach (int temperature in temperatures)
-                {
-                    float y = 300f;
-                    x += 20f;
-                    PointF point = new PointF(x, y - (10 * temperature));
-                    pointsGraph.Add(point);
-                    frameGraph.DrawEllipse(diagramPointsPen, x, y - (10 * temperature), 1f, 1f);
+                {                    
+                    x += stepX;                   
+                    pointsGraph.Add(new PointF(x, (float)heightImage / 2f - (stepY * temperature)));
+                    frameGraph.DrawEllipse(diagramPointsPen, x, (float)heightImage / 2f - (stepY * temperature), 1f, 1f);
                 }
-            }
-            
+            }            
         }
 
         void DrawGraph()
@@ -106,7 +101,5 @@ namespace TRPOPractProject
                 frameGraph.DrawLine(diagramPen, pointsGraph[i - 1], pointsGraph[i]);
             }
         }
-    }
-
-    
+    }    
 }
