@@ -7,38 +7,60 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TRPOPractProject
-{    
+{
+    public class SizeImage
+    {
+       public int Width { get; set; }
+       public int Height { get; set; }
+
+       public SizeImage(int w, int h)
+       {
+            Width = w;
+            Height = h;
+       } 
+    }
+
     class Diagram
     {
-        static int widthImage = 1400;
-        static int heightImage = 500; 
+        SizeImage size;
+        Bitmap frameImage;
+        Graphics frameGraph;
 
-        Bitmap frameImage = new Bitmap(widthImage, heightImage);
+        string textX;
+        string textY;
+
+        Font font = new Font("Times New Roman", 15, FontStyle.Regular);
 
         Pen graphPen = new Pen(Color.Black);
         Pen diagramPointsPen = new Pen(Color.Blue);
-        Pen diagramPen = new Pen(Color.Red);
+        Pen diagramPen;       
 
-        Font font = new Font("Times New Roman", 15, FontStyle.Regular);        
+        PointF firstPointX;
+        PointF firstPointY;
 
-        Graphics frameGraph;
-
-        PointF firstPointX = new PointF(0f, (float)heightImage / 2);
-        PointF firstPointY = new PointF(0.0F, 0.0F);
-
-        float stepX = 20f;
-        float stepY = 10f;        
+        int stepX;
+        int stepY;        
 
         List<PointF> pointsGraph = new List<PointF>();
 
-        int countPointsX = 0;
-        int countPointsY = 0;
+        int countPointsX;
+        int countPointsY;
 
-        public Diagram(int countX, int countY)
+        public Diagram(SizeImage sizeImage, int countX, int countY, Color diagrammColor, int stepByX, int stepByY, string textToX, string textToY)
         {
-            frameGraph = Graphics.FromImage(frameImage);
+            size = sizeImage;
+            frameImage = new Bitmap(size.Width, size.Height);
+            firstPointX = new PointF(0f, (float)size.Height / 2);
+            firstPointY = new PointF(0.0F, 0.0F);
+            diagramPen = new Pen(diagrammColor);
             countPointsX = countX;
             countPointsY = countY;
+            stepX = stepByX;
+            stepY = stepByY;
+            textX = textToX;
+            textY = textToY;
+
+            frameGraph = Graphics.FromImage(frameImage);            
         }
 
         public Bitmap DrawDiagram()
@@ -57,17 +79,17 @@ namespace TRPOPractProject
             for (int i = 0; i < countPoints; i++)
             {
                 x += stepX;
-                lastPoint = new PointF(x, (float)heightImage / 2f + 4f);
-                frameGraph.DrawLine(graphPen, new PointF(x, (float)heightImage / 2f - 4f), lastPoint);                
+                lastPoint = new PointF(x, (float)size.Height / 2f + 4f);
+                frameGraph.DrawLine(graphPen, new PointF(x, (float)size.Height / 2f - 4f), lastPoint);                
             }
-            frameGraph.DrawString("Дни месяца", font, Brushes.Black, lastPoint);
-            frameGraph.DrawLine(graphPen, firstPointX, new PointF(x, (float)heightImage / 2f));
+            frameGraph.DrawString(textX, font, Brushes.Black, lastPoint);
+            frameGraph.DrawLine(graphPen, firstPointX, new PointF(x, (float)size.Height / 2f));
         }
 
         void DrawPointsY(int countY)
         {
             float y = 0f;            
-            frameGraph.DrawString("t", font, Brushes.Black, new PointF(8f, y));
+            frameGraph.DrawString(textY, font, Brushes.Black, new PointF(8f, y));
             for (int i = 0; i < countY; i++)
             {
                 y += stepY;                
@@ -76,20 +98,20 @@ namespace TRPOPractProject
             frameGraph.DrawLine(graphPen, firstPointY, new PointF(0f, y));
         }
 
-        void DrawGraphPoints(List<int> temperatures)
+        void DrawGraphPoints(List<int> data)
         {
             float x = 0;
-            if(temperatures == null)
+            if(data == null)
             {
-                throw new Exception("Отсутствуют значения температур!");
+                throw new Exception("Отсутствуют данные!");
             }
             else
             {
-                foreach (int temperature in temperatures)
+                foreach (int value in data)
                 {                    
                     x += stepX;                   
-                    pointsGraph.Add(new PointF(x, (float)heightImage / 2f - (stepY * temperature)));
-                    frameGraph.DrawEllipse(diagramPointsPen, x, (float)heightImage / 2f - (stepY * temperature), 1f, 1f);
+                    pointsGraph.Add(new PointF(x, (float)size.Height / 2f - (stepY * value)));
+                    frameGraph.DrawEllipse(diagramPointsPen, x, (float)size.Height / 2f - (stepY * value), 1f, 1f);
                 }
             }            
         }
