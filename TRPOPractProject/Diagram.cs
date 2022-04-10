@@ -39,14 +39,15 @@ namespace TRPOPractProject
         PointF firstPointY;
 
         int stepX;
-        int stepY;        
+        int stepY;
+        int stepDiagramY;
 
         List<PointF> pointsGraph = new List<PointF>();
 
         int countPointsX;
         int countPointsY;
 
-        public Diagram(SizeImage sizeImage, int countX, int countY, Color diagrammColor, int stepByX, int stepByY, string textToX, string textToY)
+        public Diagram(SizeImage sizeImage, int countX, int countY, Color diagrammColor, int stepByX, int stepByY, int stepDiagram,string textToX, string textToY)
         {
             size = sizeImage;
             frameImage = new Bitmap(size.Width, size.Height);
@@ -57,6 +58,7 @@ namespace TRPOPractProject
             countPointsY = countY;
             stepX = stepByX;
             stepY = stepByY;
+            stepDiagramY = stepDiagram;
             textX = textToX;
             textY = textToY;
 
@@ -110,8 +112,8 @@ namespace TRPOPractProject
                 foreach (int value in data)
                 {                    
                     x += stepX;                   
-                    pointsGraph.Add(new PointF(x, (float)size.Height / 2f - (stepY * value)));
-                    frameGraph.DrawEllipse(diagramPointsPen, x, (float)size.Height / 2f - (stepY * value), 1f, 1f);
+                    pointsGraph.Add(new PointF(x, (float)size.Height / 2f - (stepDiagramY * value)));
+                    frameGraph.DrawEllipse(diagramPointsPen, x, (float)size.Height / 2f - (stepDiagramY * value), 1f, 1f);
                 }
             }            
         }
