@@ -44,12 +44,11 @@ namespace TRPOPractProject
             SizeImage size = new SizeImage(2000, 500);
             switch (graphType)
             {
-                case GraphType.TEMPERATURE:
-                    
-                    Diagram graph = new Diagram(ValuesBox.сountDays, 25, Indent.ONES, Color.Green, 5, 20, "Дни", "t", ValuesBox.ListValues, false);
+                case GraphType.TEMPERATURE:                    
+                    Diagram graphT = new Diagram(ValuesBox.сountDays, 25, Indent.ONES, Color.Green, 5, 20, "Дни", "t", ValuesBox.ListValues, false);
                     try
                     {
-                        GraphBox.Image = graph.DrawDiagram();
+                        GraphBox.Image = graphT.DrawDiagram();
                     }
                     catch (Exception ex)
                     {
@@ -57,8 +56,27 @@ namespace TRPOPractProject
                     }
                     break;
                 case GraphType.PRESSURE:
+                    Diagram graphP = new Diagram(ValuesBox.сountDays, 10, Indent.HUNDREDS, Color.Red, 20, 100, "Дни", "мм рт. ст", ValuesBox.ListValues, true);
+                    try
+                    {
+                        GraphBox.Image = graphP.DrawDiagram();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка");
+                    }
                     break;
                 case GraphType.HUMID:
+                    Diagram graphH = new Diagram(ValuesBox.сountDays, 10, Indent.TENS, Color.Blue, 20, 100, "Дни", "Влажность %", ValuesBox.ListValues, true);
+                    try
+                    {
+                        GraphBox.Image = graphH.DrawDiagram();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка");
+                    }
+                    break;
                     break;
             }
             

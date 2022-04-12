@@ -125,7 +125,7 @@ namespace TRPOPractProject
             int unsignedY = 0;
             int signedY = size.Height / 2;
             frameGraph.DrawString(textY, font, Brushes.Black, new Point(8, unsignedY));
-            for (int i = 0; i < size.Height / 2; i++)
+            for (int i = 0; i < countY; i++)
             {
                 unsignedY += stepY;                
                 frameGraph.DrawLine(graphPen, new Point(-5, unsignedY), new Point(5, unsignedY));
