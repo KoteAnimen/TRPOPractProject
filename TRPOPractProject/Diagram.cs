@@ -43,14 +43,14 @@ namespace TRPOPractProject
         Pen diagramPointsPen = new Pen(Color.Blue);
         Pen diagramPen;       
 
-        PointF firstPointX;
-        PointF firstPointY;
+        Point firstPointX;
+        Point firstPointY;
 
         int stepX;
         int stepY;
         int stepDiagramY;
 
-        List<PointF> pointsGraph = new List<PointF>();
+        List<Point> pointsGraph = new List<Point>();
 
         int countPointsX;
         int countPointsY;
@@ -87,8 +87,8 @@ namespace TRPOPractProject
         {
             size = new SizeImage(stepX * countPointsX + 100, stepY * (countPointsY * 2));
             frameImage = new Bitmap(size.Width, size.Height);
-            firstPointX = new PointF(0f, (float)size.Height / 2);
-            firstPointY = new PointF(0.0F, 0.0F);
+            firstPointX = new Point(0, size.Height / 2);
+            firstPointY = new Point(0, 0);
 
             frameGraph = Graphics.FromImage(frameImage);
 
@@ -108,39 +108,39 @@ namespace TRPOPractProject
 
         void DrawPointsX(int countPoints)
         {
-            float x = 0f;
-            PointF lastPoint = new PointF();
+            int x = 0;
+            PointF lastPoint = new Point();
             for (int i = 0; i < countPoints; i++)
             {
                 x += stepX;
-                lastPoint = new PointF(x, (float)size.Height / 2f + 4f);
-                frameGraph.DrawLine(graphPen, new PointF(x, (float)size.Height / 2f - 4f), lastPoint);                
+                lastPoint = new Point(x, size.Height / 2 + 4);
+                frameGraph.DrawLine(graphPen, new Point(x, size.Height / 2 - 4), lastPoint);                
             }
             frameGraph.DrawString(textX, font, Brushes.Black, lastPoint);
-            frameGraph.DrawLine(graphPen, firstPointX, new PointF(x, (float)size.Height / 2f));
+            frameGraph.DrawLine(graphPen, firstPointX, new Point(x, size.Height / 2));
         }
 
         void DrawPointsY(int countY, bool unsignedLine)
         {
-            float unsignedY = 0f;
-            float signedY = size.Height / 2;
-            frameGraph.DrawString(textY, font, Brushes.Black, new PointF(8f, unsignedY));
+            int unsignedY = 0;
+            int signedY = size.Height / 2;
+            frameGraph.DrawString(textY, font, Brushes.Black, new Point(8, unsignedY));
             for (int i = 0; i < size.Height / 2; i++)
             {
                 unsignedY += stepY;                
-                frameGraph.DrawLine(graphPen, new PointF(-5f, unsignedY), new PointF(5f, unsignedY));
+                frameGraph.DrawLine(graphPen, new Point(-5, unsignedY), new Point(5, unsignedY));
                 if (!unsignedLine)
                 {
                     signedY += stepY;
-                    frameGraph.DrawLine(graphPen, new PointF(-5f, signedY), new PointF(5f, signedY));
+                    frameGraph.DrawLine(graphPen, new Point(-5, signedY), new Point(5, signedY));
                 }
             }
-            frameGraph.DrawLine(graphPen, firstPointY, new PointF(0f, signedY));
+            frameGraph.DrawLine(graphPen, firstPointY, new Point(0, signedY));
         }
 
         void DrawGraphPoints(List<int> data)
         {
-            float x = 0;
+            int x = 0;
             if(data == null)
             {
                 throw new Exception("Отсутствуют данные!");
@@ -150,7 +150,7 @@ namespace TRPOPractProject
                 foreach (int value in data)
                 {                    
                     x += stepX;                   
-                    pointsGraph.Add(new PointF(x, (float)size.Height / 2f - (stepDiagramY * value)));
+                    pointsGraph.Add(new Point(x, size.Height / 2 - (stepDiagramY * value)));
                     frameGraph.DrawEllipse(diagramPointsPen, x, (float)size.Height / 2f - (stepDiagramY * value), 1f, 1f);
                 }
             }            
