@@ -33,10 +33,10 @@ namespace TRPOPractProject
         }
 
         private void Tbtn_SetParams_Click(object sender, EventArgs e)
-        {            
-                ParamsForm parametrs = new ParamsForm();
-                parametrs.ShowDialog();
-                tbx_MMTemperature.Text = ValuesBox.AvgValue().ToString();                    
+        {
+            ParamsForm parametrs = new ParamsForm();
+            parametrs.ShowDialog();
+            tbx_MMTemperature.Text = ValuesBox.AvgValue().ToString();
         }
 
         private void Tbtn_BuildGraph_Click(object sender, EventArgs e)
@@ -76,21 +76,8 @@ namespace TRPOPractProject
                     {
                         MessageBox.Show(ex.Message, "Ошибка");
                     }
-                    break;
-                    break;
-            }
-            
-
-            //if ()
-            //{
-
-
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Невозможно построить график, так как параметры не были установлены!", "Ошибка");
-            //    return;
-            //}
+                    break;                    
+            }            
         }
 
         private void Btn_AboutUs_Click(object sender, EventArgs e)
