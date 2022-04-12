@@ -151,7 +151,7 @@ namespace TRPOPractProject
                 {                    
                     x += stepX;                   
                     pointsGraph.Add(new Point(x, size.Height / 2 - (stepDiagramY * value)));
-                    frameGraph.DrawEllipse(diagramPointsPen, x, (float)size.Height / 2f - (stepDiagramY * value), 1f, 1f);
+                    frameGraph.DrawEllipse(diagramPointsPen, x, size.Height / 2 - (stepDiagramY * value), 1f, 1f);
                 }
             }            
         }
