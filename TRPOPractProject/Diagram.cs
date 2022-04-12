@@ -20,9 +20,17 @@ namespace TRPOPractProject
        } 
     }
 
+    enum Indent
+    {
+        ONES,
+        TENS,
+        HUNDREDS
+    };
+
     class Diagram
     {
         SizeImage size;
+        Indent indend;
         Bitmap frameImage;
         Graphics frameGraph;
 
@@ -47,31 +55,55 @@ namespace TRPOPractProject
         int countPointsX;
         int countPointsY;
 
-        public Diagram(SizeImage sizeImage, int countX, int countY, Color diagrammColor, int stepByX, int stepByY, int stepDiagram,string textToX, string textToY)
-        {
-            size = sizeImage;
-            frameImage = new Bitmap(size.Width, size.Height);
-            firstPointX = new PointF(0f, (float)size.Height / 2);
-            firstPointY = new PointF(0.0F, 0.0F);
+        bool unsignedDiagram;
+
+        List<int> drawPoints;
+
+        public Diagram(int countX, int countY, Indent indends, Color diagrammColor, int stepByX, int stepByY, string textToX, string textToY, List<int> points, bool unsigned)
+        {            
             diagramPen = new Pen(diagrammColor);
             countPointsX = countX;
             countPointsY = countY;
+            indend = indends;
             stepX = stepByX;
             stepY = stepByY;
-            stepDiagramY = stepDiagram;
             textX = textToX;
             textY = textToY;
-
-            frameGraph = Graphics.FromImage(frameImage);            
+            drawPoints = points;
+            unsignedDiagram = unsigned;                      
         }
 
         public Bitmap DrawDiagram()
-        {            
+        {
+            CalculateSize();
             DrawPointsX(countPointsX);
-            DrawPointsY(countPointsY);
-            DrawGraphPoints(ParametrsBox.temperatures);
+            DrawPointsY(countPointsY, unsignedDiagram);
+            DrawGraphPoints(drawPoints);
             DrawGraph();
             return frameImage;
+        }
+
+        void CalculateSize()
+        {
+            size = new SizeImage(stepX * countPointsX + 100, stepY * (countPointsY * 2));
+            frameImage = new Bitmap(size.Width, size.Height);
+            firstPointX = new PointF(0f, (float)size.Height / 2);
+            firstPointY = new PointF(0.0F, 0.0F);
+
+            frameGraph = Graphics.FromImage(frameImage);
+
+            switch (indend)
+            {
+                case Indent.ONES:
+                    stepDiagramY = stepY;
+                    break;
+                case Indent.TENS:
+                    stepDiagramY = stepY / 10;
+                    break;
+                case Indent.HUNDREDS:
+                    stepDiagramY = stepY / 100;
+                    break;                
+            }
         }
 
         void DrawPointsX(int countPoints)
@@ -88,16 +120,22 @@ namespace TRPOPractProject
             frameGraph.DrawLine(graphPen, firstPointX, new PointF(x, (float)size.Height / 2f));
         }
 
-        void DrawPointsY(int countY)
+        void DrawPointsY(int countY, bool unsignedLine)
         {
-            float y = 0f;            
-            frameGraph.DrawString(textY, font, Brushes.Black, new PointF(8f, y));
-            for (int i = 0; i < countY; i++)
+            float unsignedY = 0f;
+            float signedY = size.Height / 2;
+            frameGraph.DrawString(textY, font, Brushes.Black, new PointF(8f, unsignedY));
+            for (int i = 0; i < size.Height / 2; i++)
             {
-                y += stepY;                
-                frameGraph.DrawLine(graphPen, new PointF(-5f, y), new PointF(5f, y));
+                unsignedY += stepY;                
+                frameGraph.DrawLine(graphPen, new PointF(-5f, unsignedY), new PointF(5f, unsignedY));
+                if (!unsignedLine)
+                {
+                    signedY += stepY;
+                    frameGraph.DrawLine(graphPen, new PointF(-5f, signedY), new PointF(5f, signedY));
+                }
             }
-            frameGraph.DrawLine(graphPen, firstPointY, new PointF(0f, y));
+            frameGraph.DrawLine(graphPen, firstPointY, new PointF(0f, signedY));
         }
 
         void DrawGraphPoints(List<int> data)

@@ -20,13 +20,7 @@ namespace TRPOPractProject
         }
 
         private void Btn_Cancel_Click(object sender, EventArgs e)
-        {
-            if(ParametrsBox.temperatures != null)
-            {
-                ParametrsBox.temperatures.Clear();
-                ParametrsBox.minTemperarure = 0;
-                ParametrsBox.maxTemperarure = 0;
-            }            
+        {                 
             this.Close();
         }
 
@@ -47,17 +41,17 @@ namespace TRPOPractProject
         {
             tmpr.Clear();
             listParams.Items.Clear();
-            ParametrsBox.minTemperarure = (int)nud_Min.Value;
-            ParametrsBox.maxTemperarure = (int)nud_Max.Value;
-            if(ParametrsBox.minTemperarure <= ParametrsBox.maxTemperarure)
+            ValuesBox.MinValue = (int)nud_Min.Value;
+            ValuesBox.MaxValue = (int)nud_Max.Value;
+            if(ValuesBox.MinValue <= ValuesBox.MaxValue)
             {
-                for (int i = 0; i < ParametrsBox.countDays; i++)
+                for (int i = 0; i < ValuesBox.сountDays; i++)
                 {
-                    int tmp = rnd.Next(ParametrsBox.minTemperarure, ParametrsBox.maxTemperarure);
+                    int tmp = rnd.Next(ValuesBox.MinValue, ValuesBox.MaxValue);
                     tmpr.Add(tmp);
                     listParams.Items.Add(tmp);
                 }
-                ParametrsBox.temperatures = tmpr;
+                ValuesBox.ListValues = tmpr;
             }
             else
             {

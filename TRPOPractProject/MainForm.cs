@@ -10,21 +10,22 @@ using System.Windows.Forms;
 
 namespace TRPOPractProject
 {
+    enum GraphType
+    {
+        TEMPERATURE,
+        PRESSURE,
+        HUMID
+    };
+
     public partial class MainForm : Form
-    {               
+    {
+        GraphType graphType;
 
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void Tbtn_SelectMonth_Click(object sender, EventArgs e)
-        {
-            CalendarForm calendar = new CalendarForm();
-            calendar.ShowDialog();
-            tbx_DaysInMonth.Text = ParametrsBox.countDays.ToString();
-            tbx_MonthName.Text = ParametrsBox.monthName;
-        }
+            graphType = GraphType.TEMPERATURE;
+        }        
 
         private void Btn_Exit_Click(object sender, EventArgs e)
         {
@@ -32,68 +33,92 @@ namespace TRPOPractProject
         }
 
         private void Tbtn_SetParams_Click(object sender, EventArgs e)
-        {
-            if(ParametrsBox.monthName != "" && ParametrsBox.countDays != 1)
-            {
+        {            
                 ParamsForm parametrs = new ParamsForm();
                 parametrs.ShowDialog();
-                tbx_MMTemperature.Text = "Мин. - " + ParametrsBox.minTemperarure.ToString() + ", Макс. - " + ParametrsBox.maxTemperarure.ToString() + ", Сред. - " + ParametrsBox.AvgTemperarure().ToString();
-            }
-            else
-            {
-                MessageBox.Show("Не установлен месяц!", "Ошибка");
-                return;
-            }
-                     
+                tbx_MMTemperature.Text = ValuesBox.AvgValue().ToString();                    
         }
 
         private void Tbtn_BuildGraph_Click(object sender, EventArgs e)
         {
-            if (ParametrsBox.monthName != "" && ParametrsBox.countDays != 1)
+            SizeImage size = new SizeImage(2000, 500);
+            switch (graphType)
             {
-                Diagram graph = new Diagram(ParametrsBox.countDays, 51);
-                try
-                {
-                    GraphBox.Image = graph.DrawDiagram();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка");
-                }
-                
+                case GraphType.TEMPERATURE:
+                    
+                    Diagram graph = new Diagram(ValuesBox.сountDays, 25, Indent.ONES, Color.Green, 5, 20, "Дни", "t", ValuesBox.ListValues, false);
+                    try
+                    {
+                        GraphBox.Image = graph.DrawDiagram();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка");
+                    }
+                    break;
+                case GraphType.PRESSURE:
+                    break;
+                case GraphType.HUMID:
+                    break;
             }
-            else
-            {
-                MessageBox.Show("Невозможно построить график, так как параметры не были установлены!", "Ошибка");
-                return;
-            }
+            
+
+            //if ()
+            //{
+
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Невозможно построить график, так как параметры не были установлены!", "Ошибка");
+            //    return;
+            //}
         }
 
         private void Btn_AboutUs_Click(object sender, EventArgs e)
         {
             MessageBox.Show("ИСП-41, Филяк. \nЗадание: Построение графика для получаемых извне данных: график должен строиться постоянно, должны выводиться текущие показания, средний и прогноз (источник текущих показаний заменить ГСЧ, строящим в заданном интервале изменений за последние полгода ", "О программе");
         }
-    }
 
-    public static class ParametrsBox
+        private void ShowAllButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rb_TemperarureGraph_CheckedChanged(object sender, EventArgs e)
+        {
+            graphType = GraphType.TEMPERATURE;
+        }
+
+        private void rb_PressureGraph_CheckedChanged(object sender, EventArgs e)
+        {
+            graphType = GraphType.PRESSURE;
+        }
+
+        private void rb_HumidGraph_CheckedChanged(object sender, EventArgs e)
+        {
+            graphType = GraphType.HUMID;
+        }
+    }    
+
+    public static class ValuesBox
     {
-        public static string monthName;
-        public static int countDays = 1;
-        public static int minTemperarure;
-        public static int maxTemperarure;
-        public static List<int> temperatures;
+        public static int сountDays = 184;
+        public static int MinValue { get; set; }
+        public static int MaxValue { get; set; }
+        public static List<int> ListValues { get; set; }
 
-        public static int AvgTemperarure()
+        public static int AvgValue()
         {
             int summ = 0;
-            if(temperatures != null)
+            if (ListValues != null)
             {
-                for (int i = 0; i < temperatures.Count; i++)
+                for (int i = 0; i < ListValues.Count; i++)
                 {
-                    summ += temperatures[i];
+                    summ += ListValues[i];
                 }
-            }            
-            return summ / countDays;
+            }
+            return summ / сountDays;
         }
     }
 }

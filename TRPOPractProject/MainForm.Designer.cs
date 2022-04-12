@@ -36,19 +36,18 @@ namespace TRPOPractProject
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_AboutUs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.Tbtn_SelectMonth = new System.Windows.Forms.ToolStripButton();
             this.Tbtn_SetParams = new System.Windows.Forms.ToolStripButton();
             this.Tbtn_BuildGraph = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GraphBox = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbx_MonthName = new System.Windows.Forms.TextBox();
+            this.ShowAllButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tbx_MMTemperature = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbx_DaysInMonth = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.rb_TemperarureGraph = new System.Windows.Forms.RadioButton();
+            this.rb_PressureGraph = new System.Windows.Forms.RadioButton();
+            this.rb_HumidGraph = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -102,7 +101,6 @@ namespace TRPOPractProject
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Tbtn_SelectMonth,
             this.Tbtn_SetParams,
             this.Tbtn_BuildGraph});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
@@ -111,17 +109,6 @@ namespace TRPOPractProject
             this.toolStrip1.Size = new System.Drawing.Size(883, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // Tbtn_SelectMonth
-            // 
-            this.Tbtn_SelectMonth.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Tbtn_SelectMonth.Image = global::TRPOPractProject.Properties.Resources.calendar;
-            this.Tbtn_SelectMonth.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Tbtn_SelectMonth.Name = "Tbtn_SelectMonth";
-            this.Tbtn_SelectMonth.Size = new System.Drawing.Size(24, 24);
-            this.Tbtn_SelectMonth.Text = "toolStripButton1";
-            this.Tbtn_SelectMonth.ToolTipText = "Выбрать месяц";
-            this.Tbtn_SelectMonth.Click += new System.EventHandler(this.Tbtn_SelectMonth_Click);
             // 
             // Tbtn_SetParams
             // 
@@ -154,7 +141,7 @@ namespace TRPOPractProject
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(13, 59);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(858, 485);
+            this.groupBox1.Size = new System.Drawing.Size(858, 400);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "График";
@@ -167,7 +154,7 @@ namespace TRPOPractProject
             this.GraphBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.GraphBox.Location = new System.Drawing.Point(7, 34);
             this.GraphBox.Name = "GraphBox";
-            this.GraphBox.Size = new System.Drawing.Size(845, 445);
+            this.GraphBox.Size = new System.Drawing.Size(845, 351);
             this.GraphBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.GraphBox.TabIndex = 0;
             this.GraphBox.TabStop = false;
@@ -176,89 +163,96 @@ namespace TRPOPractProject
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.tbx_MonthName);
+            this.groupBox2.Controls.Add(this.ShowAllButton);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.tbx_MMTemperature);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.tbx_DaysInMonth);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(13, 550);
+            this.groupBox2.Location = new System.Drawing.Point(13, 465);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(858, 109);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Показатели";
             // 
-            // label3
+            // ShowAllButton
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ShowAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(591, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Месяц:";
-            // 
-            // tbx_MonthName
-            // 
-            this.tbx_MonthName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbx_MonthName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbx_MonthName.Location = new System.Drawing.Point(596, 69);
-            this.tbx_MonthName.Name = "tbx_MonthName";
-            this.tbx_MonthName.ReadOnly = true;
-            this.tbx_MonthName.Size = new System.Drawing.Size(256, 29);
-            this.tbx_MonthName.TabIndex = 4;
+            this.ShowAllButton.Location = new System.Drawing.Point(383, 55);
+            this.ShowAllButton.Name = "ShowAllButton";
+            this.ShowAllButton.Size = new System.Drawing.Size(469, 29);
+            this.ShowAllButton.TabIndex = 4;
+            this.ShowAllButton.Text = "Показать всепоказатели";
+            this.ShowAllButton.UseVisualStyleBackColor = true;
+            this.ShowAllButton.Click += new System.EventHandler(this.ShowAllButton_Click);
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(205, 37);
+            this.label2.Location = new System.Drawing.Point(25, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(263, 20);
+            this.label2.Size = new System.Drawing.Size(150, 20);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Мин.,  макс. и сред. температуры:";
+            this.label2.Text = "Cред. показатель:";
             // 
             // tbx_MMTemperature
             // 
-            this.tbx_MMTemperature.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.tbx_MMTemperature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.tbx_MMTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbx_MMTemperature.Location = new System.Drawing.Point(210, 69);
+            this.tbx_MMTemperature.Location = new System.Drawing.Point(29, 55);
             this.tbx_MMTemperature.Name = "tbx_MMTemperature";
             this.tbx_MMTemperature.ReadOnly = true;
             this.tbx_MMTemperature.Size = new System.Drawing.Size(335, 29);
             this.tbx_MMTemperature.TabIndex = 2;
             // 
-            // label1
+            // rb_TemperarureGraph
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Дней в месяце:";
+            this.rb_TemperarureGraph.AutoSize = true;
+            this.rb_TemperarureGraph.Checked = true;
+            this.rb_TemperarureGraph.Location = new System.Drawing.Point(105, 23);
+            this.rb_TemperarureGraph.Name = "rb_TemperarureGraph";
+            this.rb_TemperarureGraph.Size = new System.Drawing.Size(206, 28);
+            this.rb_TemperarureGraph.TabIndex = 4;
+            this.rb_TemperarureGraph.TabStop = true;
+            this.rb_TemperarureGraph.Text = "График температур";
+            this.rb_TemperarureGraph.UseVisualStyleBackColor = true;
+            this.rb_TemperarureGraph.CheckedChanged += new System.EventHandler(this.rb_TemperarureGraph_CheckedChanged);
             // 
-            // tbx_DaysInMonth
+            // rb_PressureGraph
             // 
-            this.tbx_DaysInMonth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbx_DaysInMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbx_DaysInMonth.Location = new System.Drawing.Point(7, 69);
-            this.tbx_DaysInMonth.Name = "tbx_DaysInMonth";
-            this.tbx_DaysInMonth.ReadOnly = true;
-            this.tbx_DaysInMonth.Size = new System.Drawing.Size(153, 29);
-            this.tbx_DaysInMonth.TabIndex = 1;
+            this.rb_PressureGraph.AutoSize = true;
+            this.rb_PressureGraph.Location = new System.Drawing.Point(317, 25);
+            this.rb_PressureGraph.Name = "rb_PressureGraph";
+            this.rb_PressureGraph.Size = new System.Drawing.Size(185, 28);
+            this.rb_PressureGraph.TabIndex = 5;
+            this.rb_PressureGraph.TabStop = true;
+            this.rb_PressureGraph.Text = "График давления";
+            this.rb_PressureGraph.UseVisualStyleBackColor = true;
+            this.rb_PressureGraph.CheckedChanged += new System.EventHandler(this.rb_PressureGraph_CheckedChanged);
+            // 
+            // rb_HumidGraph
+            // 
+            this.rb_HumidGraph.AutoSize = true;
+            this.rb_HumidGraph.Location = new System.Drawing.Point(508, 25);
+            this.rb_HumidGraph.Name = "rb_HumidGraph";
+            this.rb_HumidGraph.Size = new System.Drawing.Size(197, 28);
+            this.rb_HumidGraph.TabIndex = 6;
+            this.rb_HumidGraph.TabStop = true;
+            this.rb_HumidGraph.Text = "График влажности";
+            this.rb_HumidGraph.UseVisualStyleBackColor = true;
+            this.rb_HumidGraph.CheckedChanged += new System.EventHandler(this.rb_HumidGraph_CheckedChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 671);
+            this.ClientSize = new System.Drawing.Size(883, 586);
+            this.Controls.Add(this.rb_HumidGraph);
+            this.Controls.Add(this.rb_PressureGraph);
+            this.Controls.Add(this.rb_TemperarureGraph);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
@@ -292,19 +286,18 @@ namespace TRPOPractProject
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Btn_AboutUs;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton Tbtn_SelectMonth;
         private System.Windows.Forms.ToolStripButton Tbtn_SetParams;
         private System.Windows.Forms.ToolStripButton Tbtn_BuildGraph;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox GraphBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbx_MonthName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbx_MMTemperature;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbx_DaysInMonth;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button ShowAllButton;
+        private System.Windows.Forms.RadioButton rb_TemperarureGraph;
+        private System.Windows.Forms.RadioButton rb_PressureGraph;
+        private System.Windows.Forms.RadioButton rb_HumidGraph;
     }
 }
 
