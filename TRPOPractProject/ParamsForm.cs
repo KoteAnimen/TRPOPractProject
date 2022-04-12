@@ -17,6 +17,32 @@ namespace TRPOPractProject
         public ParamsForm()
         {
             InitializeComponent();
+            SetLimits();
+        }
+
+        void SetLimits()
+        {
+            switch (ValuesBox.graphType)
+            {
+                case GraphType.TEMPERATURE:
+                    nud_Min.Minimum = -25;
+                    nud_Min.Maximum = 25;
+                    nud_Max.Minimum = -25;
+                    nud_Max.Maximum = 25;
+                    break;
+                case GraphType.PRESSURE:
+                    nud_Min.Minimum = 0;
+                    nud_Min.Maximum = 1000;
+                    nud_Max.Minimum = 0;
+                    nud_Max.Maximum = 1000;
+                    break;
+                case GraphType.HUMID:
+                    nud_Min.Minimum = 0;
+                    nud_Min.Maximum = 100;
+                    nud_Max.Minimum = 0;
+                    nud_Max.Maximum = 100;
+                    break;
+            }
         }
 
         private void Btn_Cancel_Click(object sender, EventArgs e)

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TRPOPractProject
 {
-    enum GraphType
+    public enum GraphType
     {
         TEMPERATURE,
         PRESSURE,
@@ -18,13 +18,12 @@ namespace TRPOPractProject
     };
 
     public partial class MainForm : Form
-    {
-        GraphType graphType;
+    {        
 
         public MainForm()
         {
             InitializeComponent();
-            graphType = GraphType.TEMPERATURE;
+            ValuesBox.graphType = GraphType.TEMPERATURE;
         }        
 
         private void Btn_Exit_Click(object sender, EventArgs e)
@@ -42,7 +41,7 @@ namespace TRPOPractProject
         private void Tbtn_BuildGraph_Click(object sender, EventArgs e)
         {
             SizeImage size = new SizeImage(2000, 500);
-            switch (graphType)
+            switch (ValuesBox.graphType)
             {
                 case GraphType.TEMPERATURE:                    
                     Diagram graphT = new Diagram(ValuesBox.сountDays, 25, Indent.ONES, Color.Green, 5, 20, "Дни", "t", ValuesBox.ListValues, false);
@@ -92,22 +91,24 @@ namespace TRPOPractProject
 
         private void rb_TemperarureGraph_CheckedChanged(object sender, EventArgs e)
         {
-            graphType = GraphType.TEMPERATURE;
+            ValuesBox.graphType = GraphType.TEMPERATURE;
         }
 
         private void rb_PressureGraph_CheckedChanged(object sender, EventArgs e)
         {
-            graphType = GraphType.PRESSURE;
+            ValuesBox.graphType = GraphType.PRESSURE;
         }
 
         private void rb_HumidGraph_CheckedChanged(object sender, EventArgs e)
         {
-            graphType = GraphType.HUMID;
+            ValuesBox.graphType = GraphType.HUMID;
         }
     }    
 
     public static class ValuesBox
     {
+        public static GraphType graphType;
+
         public static int сountDays = 184;
         public static int MinValue { get; set; }
         public static int MaxValue { get; set; }
