@@ -86,7 +86,8 @@ namespace TRPOPractProject
 
         private void ShowAllButton_Click(object sender, EventArgs e)
         {
-
+            AllValuesForm all = new AllValuesForm();
+            all.ShowDialog();
         }
 
         private void rb_TemperarureGraph_CheckedChanged(object sender, EventArgs e)

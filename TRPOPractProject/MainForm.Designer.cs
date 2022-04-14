@@ -182,7 +182,7 @@ namespace TRPOPractProject
             this.ShowAllButton.Name = "ShowAllButton";
             this.ShowAllButton.Size = new System.Drawing.Size(469, 29);
             this.ShowAllButton.TabIndex = 4;
-            this.ShowAllButton.Text = "Показать всепоказатели";
+            this.ShowAllButton.Text = "Показать все показатели";
             this.ShowAllButton.UseVisualStyleBackColor = true;
             this.ShowAllButton.Click += new System.EventHandler(this.ShowAllButton_Click);
             // 
