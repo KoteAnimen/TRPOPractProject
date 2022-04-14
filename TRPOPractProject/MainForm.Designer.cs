@@ -155,7 +155,7 @@ namespace TRPOPractProject
             this.GraphBox.Location = new System.Drawing.Point(7, 34);
             this.GraphBox.Name = "GraphBox";
             this.GraphBox.Size = new System.Drawing.Size(845, 351);
-            this.GraphBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.GraphBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.GraphBox.TabIndex = 0;
             this.GraphBox.TabStop = false;
             // 
